@@ -24,7 +24,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 find_package(OpenCV)
 
 include_directories(
-${PROJECT_SOURCE_DIR}/../../../ 
+#${PROJECT_SOURCE_DIR}/../../../ 
+${PROJECT_SOURCE_DIR}/mock 
 ${PROJECT_SOURCE_DIR}/downloads/ 
 ${PROJECT_SOURCE_DIR}/downloads/eigen 
 ${PROJECT_SOURCE_DIR}/downloads/gemmlowp 
@@ -48,7 +49,7 @@ kernels/internal/*.c
 kernels/internal/optimized/*.c
 kernels/internal/reference/*.c
 downloads/farmhash/src/farmhash.cc
-downloads/fftsg.c
+mock/third_party/fft2d/fftsg.c
 )
 file(GLOB_RECURSE CORE_CC_EXCLUDE_SRCS
 *test.cc
@@ -86,7 +87,10 @@ install(TARGETS ${CORE_LIB} DESTINATION lib)
 
 set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR}/install)
 install(TARGETS ${BENCH} DESTINATION bin)
-install(FILES mobilenet.tflite mobilenet_quantized.tflite car-00.png DESTINATION tests)
+install(FILES
+  ./java/demo/app/src/main/assets/mobilenet.tflite
+  ./java/demo/app/src/main/assets/mobilenet_quant_v1_224.tflite
+  car-00.png DESTINATION tests)
 
 if (ANDROID)
 

@@ -20,7 +20,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 #cd "$SCRIPT_DIR/../../.."
 
 DOWNLOADS_DIR=downloads
-BZL_FILE_PATH=tensorflow/workspace.bzl
+BZL_FILE_PATH=mock/tensorflow/workspace.bzl
 
 # Ensure it is being run from repo root
 if [ ! -f $BZL_FILE_PATH ]; then
@@ -92,7 +92,7 @@ download_and_extract "${GEMMLOWP_URL}" "${DOWNLOADS_DIR}/gemmlowp"
 download_and_extract "${ABSL_URL}" "${DOWNLOADS_DIR}/absl"
 download_and_extract "${NEON_2_SSE_URL}" "${DOWNLOADS_DIR}/neon_2_sse"
 download_and_extract "${FARMHASH_URL}" "${DOWNLOADS_DIR}/farmhash"
-download_and_extract "${FLATBUFFERS_URL}" "${DOWNLOADS_DIR}/flatbuffers"
+#download_and_extract "${FLATBUFFERS_URL}" "${DOWNLOADS_DIR}/flatbuffers"
 
 replace_by_sed 's#static uint32x4_t p4ui_CONJ_XOR = vld1q_u32( conj_XOR_DATA );#static uint32x4_t p4ui_CONJ_XOR; // = vld1q_u32( conj_XOR_DATA ); - Removed by script#' \
   "${DOWNLOADS_DIR}/eigen/Eigen/src/Core/arch/NEON/Complex.h"
