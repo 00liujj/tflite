@@ -113,7 +113,7 @@ set_target_properties(${LIB} PROPERTIES
 )
 
 
-install(TARGETS ${LIB} DESTINATION lib)
+install(TARGETS ${LIB} DESTINATION ${PROJECT_SOURCE_DIR}/java/demo/app/src/main/jniLibs/armeabi-v7a)
 
 
 # android library
@@ -135,6 +135,6 @@ file(GLOB JAVA_SRC_FILES
 
 add_jar(tensorflowlite_java ${JAVA_SRC_FILES})
 
-install_jar(tensorflowlite_java lib/)
+install_jar(tensorflowlite_java ${PROJECT_SOURCE_DIR}/java/demo/app/src/main/jniLibs)
 
 endif ()
